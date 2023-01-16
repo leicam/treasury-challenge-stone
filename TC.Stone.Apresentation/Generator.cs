@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace TC.Stone.Apresentation
 {
-    public sealed class Generator
+    public sealed class Generator : IDisposable
     {
         #region private variables
 
@@ -32,6 +32,12 @@ namespace TC.Stone.Apresentation
 
         public void WriteFile(List<string> list) => File.WriteAllLines(_fileDirectoryAndName, list);
         public int GetLinesOfFile() => File.ReadLines(_fileDirectoryAndName).Count();
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            GC.Collect();
+        }
 
         #endregion public methods
 

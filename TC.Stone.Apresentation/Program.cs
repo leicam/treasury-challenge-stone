@@ -9,18 +9,20 @@ namespace TC.Stone.Apresentation
         {
             try
             {
-                var generator = new Generator();
-                var stopwatch = new Stopwatch();
+                using (var generator = new Generator())
+                {
+                    var stopwatch = new Stopwatch();
 
-                Console.WriteLine("Tell me the number of lines do you need and press enter.");
-                var lines = uint.Parse(Console.ReadLine());
+                    Console.WriteLine("Tell me the number of lines do you need and press enter.");
+                    var lines = uint.Parse(Console.ReadLine());
 
-                stopwatch.Start();
-                generator.WriteFile(generator.GetLines(lines));
-                Console.WriteLine($"A file with {generator.GetLinesOfFile()} lines was generated.");
-                stopwatch.Stop();
+                    stopwatch.Start();
+                    generator.WriteFile(generator.GetLines(lines));
+                    Console.WriteLine($"A file with {generator.GetLinesOfFile()} lines was generated.");
+                    stopwatch.Stop();
 
-                Console.WriteLine(stopwatch.ElapsedMilliseconds);
+                    Console.WriteLine(stopwatch.ElapsedMilliseconds);
+                }
             }
             catch (Exception ex)
             {
